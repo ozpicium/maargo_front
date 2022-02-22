@@ -48,6 +48,7 @@ const styles = {
   },
   input: { marginLeft: -10 },
 };
+export let userId = "";
 
 const GettingStarted = () => {
   const [signIn, setSignIn] = useState(false);
@@ -58,9 +59,11 @@ const GettingStarted = () => {
     e.preventDefault();
     login(value).then((res) => {
       if (res.status === "fail") {
+        localStorage.setItem("userId", value)
         setAnonId(true);
       } else {
         history.push('/signIn');
+        userId = value
       }
     });
   };

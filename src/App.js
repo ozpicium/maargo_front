@@ -8,6 +8,8 @@ import Helplines from "./screens/Helplines";
 import Onboard from "./screens/Onboard";
 import Questionaire from "./screens/Questionaire";
 import SignIn from "./screens/SignIn";
+import ContactUs from "./screens/ContactUs";
+import PrivacyPolicy from "./screens/PrivacyPolicy";
 
 export const App = ()=> {
   if (isMobile) {
@@ -21,6 +23,8 @@ export const App = ()=> {
           <Route exact path="/onboard" component={Onboard}></Route>
           <Route exact path="/questionaire" component={Questionaire}></Route>
           <Route exact path="/signIn" component={SignIn}></Route>
+          <Route exact path="/contactUs" component={ContactUs}></Route>
+          <Route exact path="/privacy" component={PrivacyPolicy}></Route>
         </Switch>
       </Router>
     );

@@ -13,6 +13,8 @@ import logo from "../logo.PNG";
 import { useHistory } from "react-router-dom";
 import { sendVerificationCode, emailVerification } from "../apis/SignUp";
 
+export let anonId = '';
+
 const styles = {
   root: { marginTop: 20, marginLeft: 20 },
   image: { width: 150, marginLeft: 90, marginBottom: 20, marginTop: 20 },
@@ -36,6 +38,7 @@ const styles = {
   },
 };
 const SignUp = () => {
+
   const history = useHistory();
 
   const [emailChecked, setEmailChecked] = useState(false);
@@ -43,6 +46,7 @@ const SignUp = () => {
   const [codeValue, setCodeValue] = React.useState("");
   const [emailVerify, setEmailVerify] = React.useState(false);
   const [emailCodeVerify, setEmailCodeVerify] = React.useState(false);
+  const [anonCode, setAnonCode] = React.useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +54,7 @@ const SignUp = () => {
     .then(res => {
       if(res.status === "fail"){
         setEmailVerify(true)
-      } else {setEmailChecked(!emailChecked);setEmailVerify(false)}
+      } else {setEmailChecked(!emailChecked);setEmailVerify(false); setAnonCode(res.status); anonId= res.status}
     });
   };
 
@@ -67,6 +71,7 @@ const SignUp = () => {
       <>
     <Box style={styles.root}>
       <header>
+        {console.log(anonCode)}
         <Image src={logo} alt="logo" style={styles.image} />
         <TextInput
           style={styles.input}
@@ -117,8 +122,8 @@ const SignUp = () => {
     </Box>
           <Footer background="black" pad="medium" >
           <Anchor label="About Us" color={"white"} />
-          <Anchor label="Contact Us" color={"white"} />
-          <Anchor label="Private Policy" color={"white"} />
+        <Anchor label="Private Policy" color={"white"} />
+        <Anchor label="contactus@maargotech.com" color={"white"} />
         </Footer>
         </>
   );

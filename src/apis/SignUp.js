@@ -1,3 +1,5 @@
+import { anonId } from "../screens/SignUp"
+
 export function sendVerificationCode(item) {
     return fetch(`https://maargo-lite-pm2e5.ondigitalocean.app/email_id?user_email=${item}`, {
       method: 'POST',
@@ -9,7 +11,7 @@ export function sendVerificationCode(item) {
    }
 
    export function emailVerification(item) {
-    return fetch(`https://maargo-lite-pm2e5.ondigitalocean.app/verify_emailed_code?user_code_input=${item}`, {
+    return fetch(`https://maargo-lite-pm2e5.ondigitalocean.app/verify_emailed_code/${anonId}?user_code_input=${item}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

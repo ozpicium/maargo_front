@@ -38,9 +38,10 @@ const styles = {
   input: { width: 200 },
 };
 
+export let userId = "";
 const Onboard = () => {
   const [setID, setSetID] = useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
   const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +49,7 @@ const Onboard = () => {
     .then(res => {
       if(res.status === "fail"){
         setSetID(false)
-      } else {setSetID(!setID)}
+      } else {setSetID(!setID); userId = value}
     });
   };
   return (
@@ -105,8 +106,8 @@ const Onboard = () => {
     </Box>
               <Footer background="black" pad="medium" >
               <Anchor label="About Us" color={"white"} />
-              <Anchor label="Contact Us" color={"white"} />
-              <Anchor label="Private Policy" color={"white"} />
+        <Anchor label="Private Policy" color={"white"} />
+        <Anchor label="contactus@maargotech.com" color={"white"} />
             </Footer>
             </>
   );

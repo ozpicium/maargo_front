@@ -74,8 +74,8 @@ const Helplines = () => {
       </Box>
       <Footer background="black" pad="medium">
         <Anchor label="About Us" color={"white"} />
-        <Anchor label="Contact Us" color={"white"} />
         <Anchor label="Private Policy" color={"white"} />
+        <Anchor label="contactus@maargotech.com" color={"white"} />
       </Footer>
     </>
   );
