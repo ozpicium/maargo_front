@@ -10,6 +10,8 @@ import {
   CardHeader,
   Button,
   TextInput,
+  Footer,
+  Anchor
 } from "grommet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +23,7 @@ import { useHistory } from "react-router-dom";
 import { login } from "../apis/Login";
 
 const styles = {
-  root: { marginTop: 20, marginLeft: 20 },
+  root: { marginTop: 20, marginLeft: 20, marginBottom:10 },
   image: { width: 150 },
   helplinesicon: { marginRight: 20, height: 40, width: 30, marginLeft: 150 },
   helplines: { marginLeft: 275, marginRight: 20 },
@@ -68,6 +70,7 @@ const GettingStarted = () => {
     });
   };
   return (
+    <>
     <Box style={styles.root}>
       <header>
         <Image src={logo} alt="logo" style={styles.image} />
@@ -138,7 +141,26 @@ const GettingStarted = () => {
           </>
         )}
       </header>
+
     </Box>
+    <Footer background="black" pad="small">
+        <Anchor label="About Us" color={"white"} />
+        <Anchor
+          label="Private Policy"
+          color={"white"}
+          onClick={() => {
+            history.push("/privacy");
+          }}
+        />
+        <Anchor
+          label="Contact Us"
+          color={"white"}
+          onClick={() => {
+            history.push("/contactUs");
+          }}
+        />
+      </Footer>
+    </>
   );
 };
 export default GettingStarted;

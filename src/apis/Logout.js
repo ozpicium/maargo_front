@@ -9,3 +9,13 @@ export function logout() {
     })
       .then(data => data.json())
    }
+
+   export function deleteAccount() {
+       return fetch(`https://maargo-lite-pm2e5.ondigitalocean.app/delete_account/${userId}`, {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json'
+         },
+       })
+         .then(data => data.json())
+      } 

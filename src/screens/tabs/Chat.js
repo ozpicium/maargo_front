@@ -27,7 +27,7 @@ const styles = {
     marginLeft: 10,
     border: { color: "black", size: "small", style: "solid" },
   },
-  sendButton: { marginLeft: -80, marginBottom: 10 },
+  sendButton: { marginLeft: 10, marginBottom: 10 },
   homeButton: { marginBottom: 10 },
   bottomLine: {
     borderBottom: "1px solid blue",
@@ -99,7 +99,7 @@ const Chat = () => {
           return <> </>
         })}
       </div>
-      <Box direction="horizontal">
+      <Box direction="row">
         <TextInput
           style={styles.input}
           onChange={(e) => setInputText(e.target.value)}

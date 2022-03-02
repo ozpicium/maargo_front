@@ -7,7 +7,8 @@ import {
   Image,
   Footer,
   Anchor,
-  Text
+  Text,
+  Notification
 } from "grommet";
 import logo from "../logo.PNG";
 import { useHistory } from "react-router-dom";
@@ -46,7 +47,8 @@ const SignUp = () => {
   const [codeValue, setCodeValue] = React.useState("");
   const [emailVerify, setEmailVerify] = React.useState(false);
   const [emailCodeVerify, setEmailCodeVerify] = React.useState(false);
-  const [anonCode, setAnonCode] = React.useState("")
+  const [anonCode, setAnonCode] = React.useState("");
+ const [notify, setNotify] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ const SignUp = () => {
     .then(res => {
       if(res.status === "fail"){
         setEmailVerify(true)
-      } else {setEmailChecked(!emailChecked);setEmailVerify(false); setAnonCode(res.status); anonId= res.status}
+      } else {setEmailChecked(!emailChecked);setEmailVerify(false); setAnonCode(res.status); anonId= res.status; setNotify(true)}
     });
   };
 
@@ -69,9 +71,18 @@ const SignUp = () => {
   };
   return (
       <>
+      {notify&&(
+        <>
+        <Notification
+        toast
+        status="normal"
+  message={`Verification code is sent to ${emailValue}`}
+  onClose={() => {setNotify(false)}}
+/>
+        </>
+      )}
     <Box style={styles.root}>
       <header>
-        {console.log(anonCode)}
         <Image src={logo} alt="logo" style={styles.image} />
         <TextInput
           style={styles.input}
@@ -120,11 +131,23 @@ const SignUp = () => {
       </header>
 
     </Box>
-          <Footer background="black" pad="medium" >
-          <Anchor label="About Us" color={"white"} />
-        <Anchor label="Private Policy" color={"white"} />
-        <Anchor label="contactus@maargotech.com" color={"white"} />
-        </Footer>
+    <Footer background="black" pad="small">
+        <Anchor label="About Us" color={"white"} />
+        <Anchor
+          label="Private Policy"
+          color={"white"}
+          onClick={() => {
+            history.push("/privacy");
+          }}
+        />
+        <Anchor
+          label="Contact Us"
+          color={"white"}
+          onClick={() => {
+            history.push("/contactUs");
+          }}
+        />
+      </Footer>
         </>
   );
 };

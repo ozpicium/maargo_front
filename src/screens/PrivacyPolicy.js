@@ -14,6 +14,7 @@ const PrivacyPolicy = () => {
   return (
     <Box style={styles.root}>
       <Image src={logo} alt="logo" style={styles.image} />
+      <div style={{ overflow: "scroll", height: 620 }}>
       <Heading margin="none" level="2">
         DATA PROTECTION NOTICE FOR CUSTOMERS{" "}
       </Heading>
@@ -247,6 +248,7 @@ const PrivacyPolicy = () => {
         continued use of our services constitutes your acknowledgement and
         acceptance of such changes.
       </Paragraph>
+      </div>
       <Box direction="row" gap="medium" style={styles.submitBox}>
         <Button
           type="back"

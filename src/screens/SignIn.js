@@ -12,6 +12,8 @@ import {
   Tabs,
   Paragraph,
   Menu,
+  Layer,
+  Button,
 } from "grommet";
 import logo from "../logo.PNG";
 import { useHistory } from "react-router-dom";
@@ -27,7 +29,7 @@ import {
 import SelfAssessment from "../screens/tabs/SelfAssessment";
 import Blogs from "./tabs/Blogs";
 import Chat from "./tabs/Chat";
-import { logout } from "../apis/Logout";
+import { logout, deleteAccount } from "../apis/Logout";
 
 const styles = {
   root: { marginTop: 20, marginLeft: 10 },
@@ -52,13 +54,21 @@ const styles = {
   },
   para: { marginLeft: 20, marginRight: 20 },
   dropdown: { marginLeft: 150, widith: 10 },
+  cancelbtn: {
+    backgroundColor: "#3A61EE",
+    color: "#FFFFFF",
+    marginTop: 30,
+    marginLeft: 10,
+    width: 150,
+    marginBottom: 10,
+  },
 };
-export let fromPath= "";
+export let fromPath = "";
 
 const SignIn = () => {
   const history = useHistory();
   const [helplinesList, sethelplinesList] = useState([]);
-
+  const [show, setShow] = React.useState(false);
   useEffect(() => {
     let mounted = true;
     getHelplines().then((items) => {
@@ -79,7 +89,13 @@ const SignIn = () => {
               <FontAwesomeIcon size="lg" style={styles.icon} icon={faUserAlt} />
             }
             items={[
-              { label: "My Profile", onClick: () => {history.push("/questionaire"); fromPath = "/signIn"} },
+              {
+                label: "My Profile",
+                onClick: () => {
+                  history.push("/questionaire");
+                  fromPath = "/signIn";
+                },
+              },
               {
                 label: "Logout",
                 onClick: () => {
@@ -87,11 +103,41 @@ const SignIn = () => {
                   history.push("/");
                 },
               },
+              {
+                label: "Delete Account",
+                onClick: () => {
+                  setShow(true);
+                },
+              },
             ]}
           />
         </Box>
       </Header>
-      
+      {show && (
+        <Box style={{ height: 200, width: 350, marginLeft: 20, marginBottom:480 }}>
+          <Paragraph>
+            Delete account will result in destroying all the preserved data. Are
+            you sure to delete account?
+          </Paragraph>
+          <Box direction="row">
+            <Button
+              label="Delete"
+              style={styles.cancelbtn}
+
+              onClick={() => {
+                deleteAccount();
+                history.push("/");
+              }}
+            />
+            <Button
+              label="Cancel"
+              style={styles.cancelbtn}
+              onClick={() => setShow(false)}
+            />
+          </Box>
+        </Box>
+      )}
+      {!show && (
         <Tabs>
           <Tab
             title={
@@ -174,6 +220,7 @@ const SignIn = () => {
             </Box>
           </Tab>
         </Tabs>
+      )}
       <Footer background="black" pad="small">
         <Anchor label="About Us" color={"white"} />
         <Anchor
