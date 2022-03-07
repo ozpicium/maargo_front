@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
   return (
     <Box style={styles.root}>
       <Image src={logo} alt="logo" style={styles.image} />
-      <div style={{ overflow: "scroll", height: 620 }}>
+      <div style={{ overflow: "scroll", height: 700 }}>
       <Heading margin="none" level="2">
         DATA PROTECTION NOTICE FOR CUSTOMERS{" "}
       </Heading>
@@ -249,15 +249,6 @@ const PrivacyPolicy = () => {
         acceptance of such changes.
       </Paragraph>
       </div>
-      <Box direction="row" gap="medium" style={styles.submitBox}>
-        <Button
-          type="back"
-          label="Back"
-          onClick={() => {
-            history.push("/signIn");
-          }}
-        />
-      </Box>
     </Box>
   );
 };

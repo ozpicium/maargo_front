@@ -26,7 +26,7 @@ const styles = {
     marginBottom: 10,
   },
   card: {
-    width: 345,
+    width: 360,
     alignItems: "center",
     justfy: "center",
     marginBottom: 20,

@@ -8,6 +8,7 @@ import {
   Image,
   Button,
   Text,
+  Notification,
 } from "grommet";
 import { useHistory } from "react-router-dom";
 import logo from "../logo.PNG";
@@ -22,8 +23,21 @@ const styles = {
 const ContactUs = () => {
   const history = useHistory();
   const [value, setValue] = React.useState({});
+  const [notify, setNotify] = React.useState(false);
   return (
     <Box style={styles.root}>
+      {notify && (
+        <>
+          <Notification
+            toast
+            status="normal"
+            message="Contact request sent."
+            onClose={() => {
+              setNotify(false);
+            }}
+          />
+        </>
+      )}
       <header>
         <Image src={logo} alt="logo" style={styles.image} />{" "}
         <Card style={styles.card}>
@@ -34,8 +48,8 @@ const ContactUs = () => {
               onReset={() => setValue({})}
               onSubmit={({ value }) => {
                 contactUs(value).then((res) => {
-                  if (res.received_data !== null) {
-                    //   history.push("/signIn");
+                  if (res.status === "success") {
+                    setNotify(true);
                   }
                 });
               }}
@@ -47,19 +61,14 @@ const ContactUs = () => {
 
               <Box direction="row" gap="medium" style={styles.submitBox}>
                 <Button type="submit" primary label="Submit" />
-                <Button
-                  type="back"
-                  label="Back"
-                  onClick={() => {
-                    history.push("/signIn");
-                  }}
-                />
               </Box>
             </Form>
           </CardBody>
-        </Card>    
-        <Box style={{alignItems: "center", marginTop: 50, marginLeft:-10}} >
-          <Text color="#35858B" weight="bold">Mail us on: contactus@maargotech.com</Text>
+        </Card>
+        <Box style={{ alignItems: "center", marginTop: 50, marginLeft: -10 }}>
+          <Text color="#35858B" weight="bold">
+            Mail us on: contactus@maargotech.com
+          </Text>
         </Box>
       </header>
     </Box>

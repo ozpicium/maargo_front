@@ -18,7 +18,7 @@ const styles = {
   root: { marginTop: 20, marginLeft: 20 },
   image: { width: 150, marginLeft: 90, marginBottom: 20, marginTop: 20 },
   para: { fontWeight: 10, marginLeft: 20, marginRight: 20, marginBottom: 70 },
-  card: { marginBottom: 10, marginRight: 10, width: 350 },
+  card: { marginBottom: 10, marginRight: 10, width: 360 },
 };
 const Questionaire = () => {
   const history = useHistory();
